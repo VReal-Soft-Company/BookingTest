@@ -17,6 +17,7 @@ namespace BookingTest.BLL.Services
     {
         List<RoomDTO> GetRoomAvailableRooms(DateTime? beginDate, DateTime? endDate, long? IdRoom);
         bool IsItAvailableToSchedule(DateTime? beginDate, DateTime? endDate, long? IdRoom);
+        IQueryable<ScheduledRoom> GetRoomsReservation(DateTime? beginDate, DateTime? endDate, long? IdRoom);
     }
     public class ScheduledRoomService : BaseService<ScheduledRoom>, IScheduledRoomService
     {
@@ -37,6 +38,11 @@ namespace BookingTest.BLL.Services
         }
         public List<RoomDTO> GetRoomAvailableRooms(DateTime? beginDate, DateTime? endDate, long? IdRoom)
         {
+            var query = GetRoomsReservation(beginDate, endDate, IdRoom);
+            return query.Select(f => f.Room).Distinct().ToList().ToDTO();
+        }
+        public IQueryable<ScheduledRoom> GetRoomsReservation(DateTime? beginDate, DateTime? endDate, long? IdRoom)
+        {
             var query = GetAll();
             if (beginDate.HasValue)
             {
@@ -50,7 +56,7 @@ namespace BookingTest.BLL.Services
             {
                 query.Where(f => f.RoomId == IdRoom);
             }
-            return query.Select(f => f.Room).Distinct().ToList().ToDTO();
+            return query;
         }
         public bool IsItAvailableToSchedule(DateTime? beginDate, DateTime? endDate, long? IdRoom)
         {

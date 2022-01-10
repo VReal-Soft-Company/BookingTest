@@ -13,7 +13,7 @@ namespace BookingTest.Data.Extensions
         {
             try
             {
-                return int.Parse((context.User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Name).Value);
+                return int.Parse((context.User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier).Value);
             }
             catch
             {
@@ -27,7 +27,7 @@ namespace BookingTest.Data.Extensions
         }
         public static string GetCurrentUserEmail(this HttpContext context)
         {
-            return (context.User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Email).Value;
+            return (context.User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier).Value;
         } 
     }
 }

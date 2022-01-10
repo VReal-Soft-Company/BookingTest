@@ -44,6 +44,7 @@ namespace BookingTest.Controllers
                     UserId = HttpContext.GetCurrentUserID(),
                     AdditionalInformation = model.AdditionalInformation
                 });
+                return Ok();
             }
             return BadRequest(ModelState);
         }
@@ -94,6 +95,12 @@ namespace BookingTest.Controllers
         public async Task<IActionResult> GetRooms()
         {
             return Ok(_roomService.GetAll().ToList().ToDTO());
+        }
+        [AllowAnonymous]
+        [HttpPost("GetRoomsReservation")]
+        public async Task<IActionResult> GetRoomsReservation([FromBody] FilterScheduleRoomDTO model)
+        {
+            return Ok(_scheduledRoomService.GetRoomsReservation(model.BeginDate,model.EndDate, model.RoomId).ToList().ToDTO());
         }
     }
 }
