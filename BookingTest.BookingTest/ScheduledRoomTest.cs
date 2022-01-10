@@ -63,14 +63,7 @@ namespace BookingTest.BookingTest
         {
             var room = roomService.GetAll().FirstOrDefault();
             var DateBeginScheduled = DateTime.UtcNow.Date;
-            var DateEndScheduled = DateTime.UtcNow.AddDays(1).Date;
-            var result = await scheduledRoomService.CreateAsync(new DLL.Entities.ScheduledRoom()
-            {
-                DateBeginScheduled = DateBeginScheduled,
-                DateEndScheduled = DateEndScheduled,
-                UserId = 1,
-                RoomId = room.Id,
-            });
+            var DateEndScheduled = DateTime.UtcNow.AddDays(1).Date; 
             var ex = Assert.Throws<AppException>(() => scheduledRoomService.CreateAsync(new DLL.Entities.ScheduledRoom()
             {
                 DateBeginScheduled = DateBeginScheduled,
