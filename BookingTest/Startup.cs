@@ -154,6 +154,7 @@ namespace BookingTest
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoomService, RoomService>();
             services.AddTransient<IScheduledRoomService, ScheduledRoomService>();
+            services.AddTransient<IImageService, ImageService>();
 
 
             services.AddTransient<IJWTHelper, JWTHelper>();

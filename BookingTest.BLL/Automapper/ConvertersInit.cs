@@ -4,6 +4,7 @@ using BookingTest.DLL.Entities;
 using BookingTest.DTO.Room;
 using BookingTest.DTO.User;
 using System;
+using System.Linq;
 
 namespace BookingTest.BLL.Automapper
 {
@@ -15,7 +16,9 @@ namespace BookingTest.BLL.Automapper
             {
                 config.CreateMap<RegisterDTO, User>();
                 config.CreateMap<LoginDTO, User>();
-                config.CreateMap<RoomDTO, Room>().ReverseMap();
+                config.CreateMap<RoomDTO, Room>().ReverseMap()
+                .ForMember(f => f.ImagesIds, opt => opt.MapFrom(f => f.Images.Select(image => image.Id)))
+                ;
             });
         }
     }

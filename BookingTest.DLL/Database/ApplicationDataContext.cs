@@ -10,7 +10,7 @@ namespace BookingTest.DLL.Database
         public DbSet<User> Users { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<ScheduledRoom> ScheduledRooms { get; set; }
-
+        public DbSet<Images> Images { get; set; }
 
         public ApplicationDataContext()
         {

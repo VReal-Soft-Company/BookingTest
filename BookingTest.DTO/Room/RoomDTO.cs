@@ -12,5 +12,6 @@ namespace BookingTest.DTO.Room
         public string Address { get; set; }
         public ushort CapacityOfRoom { get; set; }
         public double Price { get; set; }
+        public ICollection<long> ImagesIds { get; set; }
     }
 }

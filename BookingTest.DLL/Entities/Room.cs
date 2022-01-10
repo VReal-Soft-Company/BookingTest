@@ -10,6 +10,7 @@ namespace BookingTest.DLL.Entities
         public string Address { get; set; }
         public ushort CapacityOfRoom { get; set; }
         public double Price { get; set; }
+        public ICollection<Images> Images {get;set;}
         public ICollection<ScheduledRoom> ScheduledRooms { get; set; }
     }
 }

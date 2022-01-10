@@ -2,6 +2,7 @@
 using BookingTest.DLL.Database;
 using BookingTest.DLL.Entities;
 using BookingTest.DTO.Room;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,10 @@ namespace BookingTest.BLL.Services
     {
         public RoomService(ApplicationDataContext contex) : base(contex)
         {
+        }
+        public override IQueryable<Room> GetAll()
+        {
+            return base.GetAll().Include(f=>f.Images);
         }
     }
 }
